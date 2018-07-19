@@ -6,7 +6,7 @@
 #
 Name     : kxmlgui
 Version  : 5.48.0
-Release  : 1
+Release  : 2
 URL      : https://download.kde.org/stable/frameworks/5.48/kxmlgui-5.48.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.48/kxmlgui-5.48.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.48/kxmlgui-5.48.0.tar.xz.sig
