@@ -6,7 +6,7 @@
 #
 Name     : kxmlgui
 Version  : 5.48.0
-Release  : 2
+Release  : 3
 URL      : https://download.kde.org/stable/frameworks/5.48/kxmlgui-5.48.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.48/kxmlgui-5.48.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.48/kxmlgui-5.48.0.tar.xz.sig
@@ -33,6 +33,7 @@ BuildRequires : kitemviews-dev
 BuildRequires : ktextwidgets-dev
 BuildRequires : kwidgetsaddons-dev
 BuildRequires : kwindowsystem-dev
+BuildRequires : qtbase-dev qtbase-extras mesa-dev
 BuildRequires : sonnet-dev
 
 %description
@@ -82,7 +83,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532032892
+export SOURCE_DATE_EPOCH=1534110652
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -90,7 +91,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1532032892
+export SOURCE_DATE_EPOCH=1534110652
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kxmlgui
 cp COPYING %{buildroot}/usr/share/doc/kxmlgui/COPYING
