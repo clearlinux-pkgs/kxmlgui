@@ -6,7 +6,7 @@
 #
 Name     : kxmlgui
 Version  : 5.49.0
-Release  : 4
+Release  : 5
 URL      : https://download.kde.org/stable/frameworks/5.49/kxmlgui-5.49.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.49/kxmlgui-5.49.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.49/kxmlgui-5.49.0.tar.xz.sig
@@ -16,6 +16,7 @@ License  : GPL-2.0 LGPL-2.1
 Requires: kxmlgui-lib
 Requires: kxmlgui-license
 Requires: kxmlgui-locales
+Requires: kxmlgui-data
 BuildRequires : attica-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
@@ -40,10 +41,19 @@ BuildRequires : sonnet-dev
 # Overall summary of global shortcut implementation
 ## KAction, KGlobalAccel and KdedGlobalAccel
 
+%package data
+Summary: data components for the kxmlgui package.
+Group: Data
+
+%description data
+data components for the kxmlgui package.
+
+
 %package dev
 Summary: dev components for the kxmlgui package.
 Group: Development
 Requires: kxmlgui-lib
+Requires: kxmlgui-data
 Provides: kxmlgui-devel
 
 %description dev
@@ -53,6 +63,7 @@ dev components for the kxmlgui package.
 %package lib
 Summary: lib components for the kxmlgui package.
 Group: Libraries
+Requires: kxmlgui-data
 Requires: kxmlgui-license
 
 %description lib
@@ -83,7 +94,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1534111367
+export SOURCE_DATE_EPOCH=1535433688
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -91,7 +102,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1534111367
+export SOURCE_DATE_EPOCH=1535433688
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kxmlgui
 cp COPYING %{buildroot}/usr/share/doc/kxmlgui/COPYING
@@ -104,6 +115,10 @@ popd
 %files
 %defattr(-,root,root,-)
 /usr/lib64/libexec/kf5/ksendbugmail
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/xdg/ui/ui_standards.rc
 
 %files dev
 %defattr(-,root,root,-)
