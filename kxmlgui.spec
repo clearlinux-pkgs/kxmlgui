@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kxmlgui
-Version  : 5.49.0
-Release  : 5
-URL      : https://download.kde.org/stable/frameworks/5.49/kxmlgui-5.49.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.49/kxmlgui-5.49.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.49/kxmlgui-5.49.0.tar.xz.sig
+Version  : 5.50.0
+Release  : 6
+URL      : https://download.kde.org/stable/frameworks/5.50/kxmlgui-5.50.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.50/kxmlgui-5.50.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.50/kxmlgui-5.50.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -17,7 +17,6 @@ Requires: kxmlgui-lib
 Requires: kxmlgui-license
 Requires: kxmlgui-locales
 Requires: kxmlgui-data
-BuildRequires : attica-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kauth-dev
@@ -31,11 +30,8 @@ BuildRequires : kglobalaccel-dev
 BuildRequires : ki18n-dev
 BuildRequires : kiconthemes-dev
 BuildRequires : kitemviews-dev
-BuildRequires : ktextwidgets-dev
 BuildRequires : kwidgetsaddons-dev
-BuildRequires : kwindowsystem-dev
 BuildRequires : qtbase-dev qtbase-extras mesa-dev
-BuildRequires : sonnet-dev
 
 %description
 # Overall summary of global shortcut implementation
@@ -87,14 +83,14 @@ locales components for the kxmlgui package.
 
 
 %prep
-%setup -q -n kxmlgui-5.49.0
+%setup -q -n kxmlgui-5.50.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535433688
+export SOURCE_DATE_EPOCH=1536427431
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -102,7 +98,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535433688
+export SOURCE_DATE_EPOCH=1536427431
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kxmlgui
 cp COPYING %{buildroot}/usr/share/doc/kxmlgui/COPYING
@@ -172,7 +168,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5XmlGui.so.5
-/usr/lib64/libKF5XmlGui.so.5.49.0
+/usr/lib64/libKF5XmlGui.so.5.50.0
 
 %files license
 %defattr(-,root,root,-)
