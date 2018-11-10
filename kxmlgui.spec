@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kxmlgui
-Version  : 5.51.0
-Release  : 9
-URL      : https://download.kde.org/stable/frameworks/5.51/kxmlgui-5.51.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.51/kxmlgui-5.51.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.51/kxmlgui-5.51.0.tar.xz.sig
+Version  : 5.52.0
+Release  : 10
+URL      : https://download.kde.org/stable/frameworks/5.52/kxmlgui-5.52.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.52/kxmlgui-5.52.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.52/kxmlgui-5.52.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -36,6 +36,14 @@ BuildRequires : qtbase-dev mesa-dev
 %description
 # Overall summary of global shortcut implementation
 ## KAction, KGlobalAccel and KdedGlobalAccel
+
+%package abi
+Summary: abi components for the kxmlgui package.
+Group: Default
+
+%description abi
+abi components for the kxmlgui package.
+
 
 %package data
 Summary: data components for the kxmlgui package.
@@ -83,14 +91,14 @@ locales components for the kxmlgui package.
 
 
 %prep
-%setup -q -n kxmlgui-5.51.0
+%setup -q -n kxmlgui-5.52.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539641580
+export SOURCE_DATE_EPOCH=1541874470
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -98,7 +106,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1539641580
+export SOURCE_DATE_EPOCH=1541874470
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kxmlgui
 cp COPYING %{buildroot}/usr/share/package-licenses/kxmlgui/COPYING
@@ -112,8 +120,13 @@ popd
 %defattr(-,root,root,-)
 /usr/lib64/libexec/kf5/ksendbugmail
 
+%files abi
+%defattr(-,root,root,-)
+/usr/share/abi/libKF5XmlGui.so.5.52.0.abi
+
 %files data
 %defattr(-,root,root,-)
+/usr/share/xdg/kxmlgui.categories
 /usr/share/xdg/ui/ui_standards.rc
 
 %files dev
@@ -168,7 +181,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5XmlGui.so.5
-/usr/lib64/libKF5XmlGui.so.5.51.0
+/usr/lib64/libKF5XmlGui.so.5.52.0
 
 %files license
 %defattr(0644,root,root,0755)
