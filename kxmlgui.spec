@@ -6,11 +6,11 @@
 #
 Name     : kxmlgui
 Version  : 5.57.0
-Release  : 21
+Release  : 22
 URL      : https://download.kde.org/stable/frameworks/5.57/kxmlgui-5.57.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.57/kxmlgui-5.57.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.57/kxmlgui-5.57.0.tar.xz.sig
-Summary  : No detailed summary available
+Summary  : User configurable main windows
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: kxmlgui-data = %{version}-%{release}
@@ -19,6 +19,7 @@ Requires: kxmlgui-license = %{version}-%{release}
 Requires: kxmlgui-locales = %{version}-%{release}
 BuildRequires : attica-dev
 BuildRequires : buildreq-cmake
+BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules
 BuildRequires : kauth-dev
 BuildRequires : kcodecs-dev
@@ -38,8 +39,13 @@ BuildRequires : qtbase-dev mesa-dev
 BuildRequires : sonnet-dev
 
 %description
-# Overall summary of global shortcut implementation
-## KAction, KGlobalAccel and KdedGlobalAccel
+# KXMLGUI
+Framework for managing menu and toolbar actions
+## Introduction
+KXMLGUI provides a framework for managing menu and toolbar actions in an
+abstract way. The actions are configured through a XML description and hooks
+in the application code. The framework supports merging of multiple
+description for example for integrating actions from plugins.
 
 %package data
 Summary: data components for the kxmlgui package.
@@ -95,16 +101,22 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1556943776
+export SOURCE_DATE_EPOCH=1557038326
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1556943776
+export SOURCE_DATE_EPOCH=1557038326
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kxmlgui
 cp COPYING %{buildroot}/usr/share/package-licenses/kxmlgui/COPYING
