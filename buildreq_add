@@ -2,16 +2,19 @@
 # picked up automatically. One name per line, no whitespace.
 buildreq-cmake
 extra-cmake-modules
-kcoreaddons-dev
-kitemviews-dev
+kauth-dev
+kcodecs-dev
 kconfig
 kconfig-dev
 kconfigwidgets-dev
-kauth-dev
-kcodecs-dev
-kwidgetsaddons-dev
-ki18n-dev
-kiconthemes-dev
+kcoreaddons-dev
 kglobalaccel
 kglobalaccel-dev
+ki18n-dev
+kiconthemes-dev
+kitemviews-dev
+ktextwidgets-dev
+kwidgetsaddons-dev
+kwindowsystem-dev
+qttools-dev
 sonnet-dev
