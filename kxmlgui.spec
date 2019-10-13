@@ -5,20 +5,20 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kxmlgui
-Version  : 5.62.0
-Release  : 33
-URL      : https://download.kde.org/stable/frameworks/5.62/kxmlgui-5.62.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.62/kxmlgui-5.62.0.tar.xz
-Source1 : https://download.kde.org/stable/frameworks/5.62/kxmlgui-5.62.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 5.63.0
+Release  : 34
+URL      : https://download.kde.org/stable/frameworks/5.63/kxmlgui-5.63.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.63/kxmlgui-5.63.0.tar.xz
+Source1 : https://download.kde.org/stable/frameworks/5.63/kxmlgui-5.63.0.tar.xz.sig
+Summary  : User configurable main windows
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: kxmlgui-data = %{version}-%{release}
 Requires: kxmlgui-lib = %{version}-%{release}
 Requires: kxmlgui-license = %{version}-%{release}
 Requires: kxmlgui-locales = %{version}-%{release}
-BuildRequires : attica-dev
 BuildRequires : buildreq-cmake
+BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules
 BuildRequires : kauth-dev
 BuildRequires : kcodecs-dev
@@ -39,8 +39,13 @@ BuildRequires : qttools-dev
 BuildRequires : sonnet-dev
 
 %description
-# Overall summary of global shortcut implementation
-## KAction, KGlobalAccel and KdedGlobalAccel
+# KXMLGUI
+Framework for managing menu and toolbar actions
+## Introduction
+KXMLGUI provides a framework for managing menu and toolbar actions in an
+abstract way. The actions are configured through a XML description and hooks
+in the application code. The framework supports merging of multiple
+description for example for integrating actions from plugins.
 
 %package data
 Summary: data components for the kxmlgui package.
@@ -56,6 +61,7 @@ Group: Development
 Requires: kxmlgui-lib = %{version}-%{release}
 Requires: kxmlgui-data = %{version}-%{release}
 Provides: kxmlgui-devel = %{version}-%{release}
+Requires: kxmlgui = %{version}-%{release}
 Requires: kxmlgui = %{version}-%{release}
 
 %description dev
@@ -89,16 +95,17 @@ locales components for the kxmlgui package.
 
 
 %prep
-%setup -q -n kxmlgui-5.62.0
+%setup -q -n kxmlgui-5.63.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569714743
+export SOURCE_DATE_EPOCH=1570979887
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -112,7 +119,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1569714743
+export SOURCE_DATE_EPOCH=1570979887
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kxmlgui
 cp COPYING %{buildroot}/usr/share/package-licenses/kxmlgui/COPYING
@@ -183,7 +190,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5XmlGui.so.5
-/usr/lib64/libKF5XmlGui.so.5.62.0
+/usr/lib64/libKF5XmlGui.so.5.63.0
 /usr/lib64/qt5/plugins/designer/kxmlgui5widgets.so
 
 %files license
