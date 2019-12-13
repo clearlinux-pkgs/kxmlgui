@@ -6,19 +6,19 @@
 #
 Name     : kxmlgui
 Version  : 5.64.0
-Release  : 37
+Release  : 38
 URL      : https://download.kde.org/stable/frameworks/5.64/kxmlgui-5.64.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.64/kxmlgui-5.64.0.tar.xz
-Source1 : https://download.kde.org/stable/frameworks/5.64/kxmlgui-5.64.0.tar.xz.sig
-Summary  : User configurable main windows
+Source1  : https://download.kde.org/stable/frameworks/5.64/kxmlgui-5.64.0.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: kxmlgui-data = %{version}-%{release}
 Requires: kxmlgui-lib = %{version}-%{release}
 Requires: kxmlgui-license = %{version}-%{release}
 Requires: kxmlgui-locales = %{version}-%{release}
+BuildRequires : attica-dev
 BuildRequires : buildreq-cmake
-BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules
 BuildRequires : kauth-dev
 BuildRequires : kcodecs-dev
@@ -39,13 +39,8 @@ BuildRequires : qttools-dev
 BuildRequires : sonnet-dev
 
 %description
-# KXMLGUI
-Framework for managing menu and toolbar actions
-## Introduction
-KXMLGUI provides a framework for managing menu and toolbar actions in an
-abstract way. The actions are configured through a XML description and hooks
-in the application code. The framework supports merging of multiple
-description for example for integrating actions from plugins.
+# Overall summary of global shortcut implementation
+## KAction, KGlobalAccel and KdedGlobalAccel
 
 %package data
 Summary: data components for the kxmlgui package.
@@ -61,7 +56,6 @@ Group: Development
 Requires: kxmlgui-lib = %{version}-%{release}
 Requires: kxmlgui-data = %{version}-%{release}
 Provides: kxmlgui-devel = %{version}-%{release}
-Requires: kxmlgui = %{version}-%{release}
 Requires: kxmlgui = %{version}-%{release}
 
 %description dev
@@ -96,16 +90,16 @@ locales components for the kxmlgui package.
 
 %prep
 %setup -q -n kxmlgui-5.64.0
+cd %{_builddir}/kxmlgui-5.64.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573403574
+export SOURCE_DATE_EPOCH=1576200054
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -119,7 +113,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1573403574
+export SOURCE_DATE_EPOCH=1576200054
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kxmlgui
 cp %{_builddir}/kxmlgui-5.64.0/COPYING %{buildroot}/usr/share/package-licenses/kxmlgui/7c203dee3a03037da436df03c4b25b659c073976
