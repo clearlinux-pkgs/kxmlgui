@@ -6,7 +6,7 @@
 #
 Name     : kxmlgui
 Version  : 5.70.0
-Release  : 46
+Release  : 47
 URL      : https://download.kde.org/stable/frameworks/5.70/kxmlgui-5.70.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.70/kxmlgui-5.70.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.70/kxmlgui-5.70.0.tar.xz.sig
