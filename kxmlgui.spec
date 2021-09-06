@@ -5,14 +5,14 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kxmlgui
-Version  : 5.83.0
-Release  : 58
-URL      : https://download.kde.org/stable/frameworks/5.83/kxmlgui-5.83.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.83/kxmlgui-5.83.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.83/kxmlgui-5.83.0.tar.xz.sig
+Version  : 5.85.0
+Release  : 59
+URL      : https://download.kde.org/stable/frameworks/5.85/kxmlgui-5.85.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.85/kxmlgui-5.85.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.85/kxmlgui-5.85.0.tar.xz.sig
 Summary  : User configurable main windows
 Group    : Development/Tools
-License  : GPL-2.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
+License  : BSD-2-Clause GPL-2.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
 Requires: kxmlgui-data = %{version}-%{release}
 Requires: kxmlgui-lib = %{version}-%{release}
 Requires: kxmlgui-license = %{version}-%{release}
@@ -90,40 +90,41 @@ locales components for the kxmlgui package.
 
 
 %prep
-%setup -q -n kxmlgui-5.83.0
-cd %{_builddir}/kxmlgui-5.83.0
+%setup -q -n kxmlgui-5.85.0
+cd %{_builddir}/kxmlgui-5.85.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623646487
+export SOURCE_DATE_EPOCH=1630899884
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623646487
+export SOURCE_DATE_EPOCH=1630899884
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kxmlgui
-cp %{_builddir}/kxmlgui-5.83.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kxmlgui/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/kxmlgui-5.83.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kxmlgui/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kxmlgui-5.83.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kxmlgui/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kxmlgui-5.83.0/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/kxmlgui/6f1f675aa5f6a2bbaa573b8343044b166be28399
-cp %{_builddir}/kxmlgui-5.83.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kxmlgui/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/kxmlgui-5.83.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kxmlgui/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/kxmlgui-5.83.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kxmlgui/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kxmlgui-5.85.0/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kxmlgui/ea97eb88ae53ec41e26f8542176ab986d7bc943a
+cp %{_builddir}/kxmlgui-5.85.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kxmlgui/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kxmlgui-5.85.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kxmlgui/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kxmlgui-5.85.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kxmlgui/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kxmlgui-5.85.0/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/kxmlgui/6f1f675aa5f6a2bbaa573b8343044b166be28399
+cp %{_builddir}/kxmlgui-5.85.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kxmlgui/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/kxmlgui-5.85.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kxmlgui/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kxmlgui-5.85.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kxmlgui/e458941548e0864907e654fa2e192844ae90fc32
 pushd clr-build
 %make_install
 popd
@@ -155,6 +156,7 @@ popd
 /usr/include/KF5/KXmlGui/KShortcutsEditor
 /usr/include/KF5/KXmlGui/KToggleToolBarAction
 /usr/include/KF5/KXmlGui/KToolBar
+/usr/include/KF5/KXmlGui/KToolTipHelper
 /usr/include/KF5/KXmlGui/KUndoActions
 /usr/include/KF5/KXmlGui/KXMLGUIBuilder
 /usr/include/KF5/KXmlGui/KXMLGUIClient
@@ -174,6 +176,7 @@ popd
 /usr/include/KF5/KXmlGui/kshortcutwidget.h
 /usr/include/KF5/KXmlGui/ktoggletoolbaraction.h
 /usr/include/KF5/KXmlGui/ktoolbar.h
+/usr/include/KF5/KXmlGui/ktooltiphelper.h
 /usr/include/KF5/KXmlGui/kundoactions.h
 /usr/include/KF5/KXmlGui/kxmlgui_export.h
 /usr/include/KF5/KXmlGui/kxmlguibuilder.h
@@ -191,7 +194,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5XmlGui.so.5
-/usr/lib64/libKF5XmlGui.so.5.83.0
+/usr/lib64/libKF5XmlGui.so.5.85.0
 /usr/lib64/qt5/plugins/designer/kxmlgui5widgets.so
 
 %files license
@@ -201,6 +204,7 @@ popd
 /usr/share/package-licenses/kxmlgui/757b86330df80f81143d5916b3e92b4bcb1b1890
 /usr/share/package-licenses/kxmlgui/e458941548e0864907e654fa2e192844ae90fc32
 /usr/share/package-licenses/kxmlgui/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+/usr/share/package-licenses/kxmlgui/ea97eb88ae53ec41e26f8542176ab986d7bc943a
 
 %files locales -f kxmlgui5.lang
 %defattr(-,root,root,-)
