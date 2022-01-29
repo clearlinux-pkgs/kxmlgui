@@ -6,7 +6,7 @@
 #
 Name     : kxmlgui
 Version  : 5.90.0
-Release  : 65
+Release  : 66
 URL      : https://download.kde.org/stable/frameworks/5.90/kxmlgui-5.90.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.90/kxmlgui-5.90.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.90/kxmlgui-5.90.0.tar.xz.sig
@@ -98,7 +98,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1642093363
+export SOURCE_DATE_EPOCH=1643437633
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -114,7 +114,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1642093363
+export SOURCE_DATE_EPOCH=1643437633
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kxmlgui
 cp %{_builddir}/kxmlgui-5.90.0/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kxmlgui/ea97eb88ae53ec41e26f8542176ab986d7bc943a
@@ -140,6 +140,7 @@ popd
 %defattr(-,root,root,-)
 /usr/share/qlogging-categories5/kxmlgui.categories
 /usr/share/qlogging-categories5/kxmlgui.renamecategories
+/usr/share/xdg/ui/ui_standards.rc
 
 %files dev
 %defattr(-,root,root,-)
