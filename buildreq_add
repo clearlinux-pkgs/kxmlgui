@@ -19,3 +19,6 @@ kwindowsystem-dev
 qttools-dev
 sonnet-dev
 mesa-dev
+qt6declarative-dev
+kguiaddons-dev
+qt6tools-dev
